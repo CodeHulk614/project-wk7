@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group seven project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <!-- Vue Application scope -->
+   <div id="app">
+       <!-- Navigation bar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container-fluid">
+            <a class="navbar-brand" href="#"><h5 class="m-0">Group_seven🚀 </h5></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="https://github.com/codeCrown12/group_7_project"><i class="fab fa-github" style="font-size: 25px;"></i></a>
+                </li>
+                </ul>
+            </div>
+            </div>
+        </nav>
+      <!-- End of navigation bar -->
+      
+      <!-- Page caption -->
+      <div class="container-fluid bg-dark p-5">
+          <div class="row justify-content-center">
+            <div class="col-sm-7">
+                <h1 class="text-center text-light">
+                    Search after school activities and lessons for your wards and kids 👨‍🎓
+                </h1>
+                <p class="text-light text-center fw-light mb-0">Quality knowledge and skills to empower the new generation!</p>
+            </div>
+          </div>
+      </div>
+      <!-- End of page caption -->
+
+      <!-- Lesson cards display -->
+       <div class="container">
+           <div class="row mt-4 justify-content-center">
+               <div class="col-sm-3 mb-3">
+                    <div class="card rounded-0">
+                        <img v-bind:src="lesson.img_url" class="myimg card-img-top rounded-0" alt="...">
+                        <div class="card-body">
+                            <p class="mb-1"><strong>Subject: </strong> {{lesson.subject}}</p>
+                            <p class="mb-1"><strong>Location: </strong> {{lesson.location}}</p>
+                            <p class="mb-1"><strong>Spaces: </strong> {{lesson.spaces}} <span v-if="lesson.spaces < 1" style="color: red;">!Out of stock</span></p>
+                            <p class="mb-1"><strong>Price: </strong> $ {{lesson.price}}</p>
+                            <button v-on:click="addToCart" class="w-100 mt-1 btn btn-sm btn-primary rounded-0">Add to cart <i class="fas fa-cart-plus"></i></button>
+                        </div>
+                  </div>
+               </div>
+           </div>
+       </div>
+       <!-- End of lesson cards display -->
+
+       <!-- Footer -->
+       <footer>
+           <div class="container">
+               <div class="row justify-content-center">
+                   <div class="col-sm-4 mb-3 mt-3">
+                        <p class="text-center m-0">Made with ❤️ and Vue js</p>
+                        <p class="text-center m-0">Group_seven🚀 | &copy; 2022</p>
+                   </div>
+               </div>
+           </div>
+       </footer>
+       <!-- End of footer -->
+
+   </div>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+   <script>
+       var app = new Vue({
+           el: "#app",
+           data:{
+                lesson: {
+                    subject: "Art",
+                    location: "France",
+                    spaces: 5,
+                    price: 200,
+                    img_url: "images/art_image.jpg"
+                }
+           },
+           methods:{
+               addToCart: function(){
+                    if (this.lesson.spaces >= 1) {
+                        // Reduce the spaces
+                        this.lesson.spaces -= 1
+                    }
+                    else{
+                        this.lesson.spaces = 0
+                    }
+               }
+           }
+       })
+   </script>
+</body>
+</html>
